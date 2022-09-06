@@ -26,7 +26,7 @@ function ChatRoom() {
       <>
         <h2>{room.title}</h2>
         <div>
-          <Link to="/">⬅️ Back to all rooms</Link>
+          <Link to="/">⬅️ Back to all Meeting</Link>
         </div>
         
         <button
