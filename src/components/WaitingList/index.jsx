@@ -11,7 +11,7 @@ function WaitingList({meeting, user} ) {
 console.log(meeting,user);
     return (
       <>
-        <h1 className="text-3xl text-gray-700 font-bold mb-5">WaitingList</h1>
+        <h1 className="text-3xl text-gray-700 font-bold mb-5">Waiting List</h1>
 
         {meeting.joindList.map((x) => (
           <Person

@@ -23,7 +23,13 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
+
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  getAuth,
+  browserSessionPersistence,
+} from "firebase/auth";
 
 const db = getFirestore(app);
 
@@ -56,8 +62,6 @@ function getMessages(roomId, callback) {
   );
 }
 
-console.log('====================================');
-console.log('====================================');
 
 // ...
 async function sendMessage(roomId, user, text) {
