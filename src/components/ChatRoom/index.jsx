@@ -28,6 +28,7 @@ function ChatRoom() {
         <div>
           <Link to="/">⬅️ Back to all rooms</Link>
         </div>
+        
         <button
           onClick={() =>
             found
