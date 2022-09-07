@@ -10,19 +10,21 @@ import { useContext, useEffect, useState, createContext } from "react";
 export const MeetingContext = createContext();
 function App() {
 const [meeting,setMeeting] =  useState([]);
+const { user } = useAuth();
+
 
 useEffect(() => {
-  
   const unsubscribe = onSnapshot(collection(db, "chat-rooms"), (snapshot) =>
-  setMeeting(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-);
-return unsubscribe;
-}, []);
+    setMeeting(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+  );
+  return unsubscribe;
+}, [user]);
 
 
+console.log('====================================');
+console.log(user);
+console.log('====================================');
 
-
-const { user } = useAuth();
 
 return (
   <div className="container">

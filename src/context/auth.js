@@ -12,14 +12,21 @@ const AuthProvider = (props) => {
       // TODO: Handle failed login
     }
     localStorage.setItem("user", JSON.stringify(c_user));
+    setUser(c_user);
   };
+
+  const logout = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+  };
+
   const [user, setUser] = React.useState(null);
   useEffect(() => {
     const usr = JSON.parse(localStorage.getItem("user"));
     setUser(usr);
   }, []);
 
-  const value = { user, login };
+  const value = { user, login, logout };
 
   return <AuthContext.Provider value={value} {...props} />;
 };
