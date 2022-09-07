@@ -33,18 +33,12 @@ import {
 
 const db = getFirestore(app);
 
-
-
-
-
- // Fetch the required data using the get() method
-    const Fetchdata = async () => {
-      const docRef = doc(db);
-      const docSnap = await getDoc(docRef);
-      const data = docSnap.data();
-      console.log(data);
-    };
-   
+// Fetch the required data using the get() method
+const Fetchdata = async () => {
+  const docRef = doc(db);
+  const docSnap = await getDoc(docRef);
+  const data = docSnap.data();
+};
 
 function getMessages(roomId, callback) {
   return onSnapshot(
@@ -61,7 +55,6 @@ function getMessages(roomId, callback) {
     }
   );
 }
-
 
 // ...
 async function sendMessage(roomId, user, text) {
@@ -94,4 +87,4 @@ async function loginWithGoogle() {
   }
 }
 
-export { loginWithGoogle, sendMessage, getMessages, Fetchdata,db };
+export { loginWithGoogle, sendMessage, getMessages, Fetchdata, db };

@@ -15,6 +15,7 @@ console.log(meeting,user);
 
         {meeting.joindList.map((x) => (
           <Person
+            key={meeting.id}
             index={Math.abs(meeting.joindList.indexOf(x) + 1)}
             queueList_bool={false}
             id={meeting.id}

@@ -4,39 +4,40 @@ import { useAuth } from '../../hooks/useAuth';
 import './styles.css';
 import {MeetingContext} from '../../App';
 import { useContext } from 'react';
+import { Profiler } from 'react';
+import Profile from '../Profile';
+
+
 
 function Landing() {
    const {meeting,  user} = useContext(MeetingContext);
 //    
     return (
       <>
+      <Link to="/profile">
+        <Profile  user={user} /></Link>
         <h2>Choose Meeting</h2>
-        <ul
-          className="container min-w-full mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-        >
+        <ul className="container min-w-full mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {meeting.map((meeting) => (
-            <div
-              className="min-w-full "
-              key={meeting.id}
-            >
+            <div className="min-w-full " key={meeting.id}>
               <Link to={`/room/${meeting.id}`}>
-                <div class="	 p-6  bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+                <div className="	 p-6  bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                   <a href="#">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                       {meeting.title}
                     </h5>
                   </a>
-                  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                  <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                     {meeting.joindList.length} people are joind
                   </p>
                   <a
                     href="#"
-                    class="inline-flex items-center py-2 px-3 text-sm font-small text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    className="inline-flex items-center py-2 px-3 text-sm font-small text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
                     Enter
                     <svg
                       aria-hidden="true"
-                      class="ml-2 -mr-1 w-4 h-4"
+                      className="ml-2 -mr-1 w-4 h-4"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       xmlns="http://www.w3.org/2000/svg"

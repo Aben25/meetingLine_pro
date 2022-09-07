@@ -21,9 +21,7 @@ return unsubscribe;
 
 
 
-console.log('===============++=====================');
-console.log(meeting);
-console.log('====================================');
+
 const { user } = useAuth();
 
 return (
