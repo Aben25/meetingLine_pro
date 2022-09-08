@@ -12,7 +12,6 @@ function App() {
 const [meeting,setMeeting] =  useState([]);
 const { user } = useAuth();
 
-
 useEffect(() => {
   const unsubscribe = onSnapshot(collection(db, "chat-rooms"), (snapshot) =>
     setMeeting(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
@@ -28,7 +27,10 @@ console.log('====================================');
 
 return (
   <div className="container">
-    <h1>💬 MeetingLine</h1>
+    <a href="/">
+      {" "}
+      <h1>💬 MeetingLine</h1>
+    </a>
 
     {user ? (
       <MeetingContext.Provider value={{ meeting, user }}>

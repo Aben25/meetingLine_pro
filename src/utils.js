@@ -6,6 +6,7 @@ import {
   updateDoc,
   arrayUnion,
   arrayRemove,
+  deleteDoc,
 } from "firebase/firestore";
 import { db } from "./services/firebase";
 
@@ -41,4 +42,16 @@ export const removeperson = async (id, name) => {
   const payload = { name: name };
   await updateDoc(docRef, { queueList: arrayRemove(payload) });
   await updateDoc(docRef, { joindList: arrayUnion(payload) });
+};
+
+export const addmeeting = async (title, number, admin) => {
+  const docRef = collection(db, "chat-rooms");
+  const payload = { title: title, number: number, admin: admin, queueList: [], joindList: [] };
+    await addDoc(docRef, payload);
+
+  };
+
+export const removeMeeting = async (id) => {
+  const docRef = doc(db, "chat-rooms", id);
+  await deleteDoc(docRef);
 };
