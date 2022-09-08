@@ -20,16 +20,11 @@ useEffect(() => {
 }, [user]);
 
 
-console.log('====================================');
-console.log(user);
-console.log('====================================');
-
-
 return (
   <div className="container">
     <a href="/">
       {" "}
-      <h1>💬 MeetingLine</h1>
+      <img className='w-56' src="/white h.png" alt="logo" />{" "}
     </a>
 
     {user ? (
