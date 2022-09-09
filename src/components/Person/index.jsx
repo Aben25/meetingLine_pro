@@ -1,6 +1,6 @@
 import React from "react";
 import { joindList, queueList, removeperson } from "../../utils";
-import { MeetingContext } from "../../App";
+import { MeetingContext } from "../AuthenticatedApp";
 import { useContext } from "react";
 
 export default function Person({ name, id, queueList_bool, index }) {
@@ -15,19 +15,7 @@ export default function Person({ name, id, queueList_bool, index }) {
         </div>
         <div className="basis-2/1 mr-5">{name}</div>
       </div>
-      <div className="flex flex-row">
-        {user.displayName === name ? (
-          <button
-            onClick={() =>
-              queueList_bool ? removeperson(id, name) : queueList(id, name)
-            }
-            type="button"
-            className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2  dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-          >
-            {queueList_bool ? "Hand Down" : "Raise Hand"}
-          </button>
-        ) : null}
-      </div>
+   
     </div>
   );
 }

@@ -30,6 +30,12 @@ export const queueList = async (id, name) => {
   await updateDoc(docRef, { queueList: arrayUnion(payload) });
   await updateDoc(docRef, { joindList: arrayRemove(payload) });
 };
+export const removequeues = async (id, name) => {
+  const docRef = doc(db, "chat-rooms", id);
+  const payload = { name: name };
+  await updateDoc(docRef, { joindList: arrayUnion(payload) });
+  await updateDoc(docRef, { queueList: arrayRemove(payload) });
+};
 
 export const removeJoindList = async (id, name) => {
   const docRef = doc(db, "chat-rooms", id);
@@ -46,7 +52,7 @@ export const removeperson = async (id, name) => {
 
 export const addmeeting = async (title, number, admin) => {
   const docRef = collection(db, "chat-rooms");
-  const payload = { title: title, number: number, admin: admin, queueList: [], joindList: [] };
+  const payload = { title: title, number: number, admin: admin, queueList: [], joindList: [], friends: [] };
     await addDoc(docRef, payload);
 
   };

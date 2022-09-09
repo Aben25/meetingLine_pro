@@ -1,15 +1,21 @@
 import React from 'react'
 import Profile from './Profile';
 import { useContext } from 'react';
-import { MeetingContext } from "../App";
 import { useAuth } from "../hooks/useAuth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { removeMeeting } from "../utils";
+import { MeetingContext } from "./AuthenticatedApp";
 
 export default function Account() {
   const {logout} =useAuth()
  const { meeting, user } = useContext(MeetingContext);
+const domain = window.location.hostname
+  let navigate = useNavigate();
 
+  
+  function handleClick(title) {
+    navigate("../"+title);
+  }
 
   const mymeeting = meeting.filter((meet) => meet.admin === user.displayName);
   console.log(mymeeting)
@@ -43,19 +49,16 @@ export default function Account() {
       </div>
       <div className="">
         {mymeeting.map((meet) => (
-          <div className=" container">
-            <div
-              key={meet.id}
-              className="p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
-            >
-              <a href="#">
+          <div key={meet.id} className=" container">
+            <div className="p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+              <a href={meeting.title}>
                 <p className="mb-2 text-3 tracking-tight text-gray-900 dark:text-white">
                   {meet.title}
                 </p>
               </a>
 
               <a
-                href="#"
+                onClick={(() => handleClick(meet.title))}
                 className="mr-2 inline-flex items-center py-1 px-2 text-sm font-small text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 Join{" "}
@@ -74,7 +77,7 @@ export default function Account() {
                 </svg>
               </a>
               <a
-                onClick={()=>removeMeeting(meet.id)}
+                onClick={() => removeMeeting(meet.id)}
                 href="#"
                 className="inline-flex items-center py-1 px-2  text-sm text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
               >

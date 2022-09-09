@@ -3,7 +3,7 @@ import Profile from "./Profile";
 import { useContext } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { addmeeting } from "../utils";
-import { MeetingContext } from "../App";
+import { MeetingContext } from "./AuthenticatedApp";
 import { useNavigate } from "react-router-dom";
 export default function Account() {
   const [title, setTitle] = React.useState("");

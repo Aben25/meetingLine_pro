@@ -6,18 +6,11 @@ import { useAuth } from "./hooks/useAuth";
 import { db } from './services/firebase';
 import { onSnapshot, collection } from "firebase/firestore";
 import { useContext, useEffect, useState, createContext } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 
-export const MeetingContext = createContext();
 function App() {
-const [meeting,setMeeting] =  useState([]);
-const { user } = useAuth();
 
-useEffect(() => {
-  const unsubscribe = onSnapshot(collection(db, "chat-rooms"), (snapshot) =>
-    setMeeting(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-  );
-  return unsubscribe;
-}, [user]);
+  const { user } = useAuth();
 
 
 return (
@@ -28,9 +21,7 @@ return (
     </a>
 
     {user ? (
-      <MeetingContext.Provider value={{ meeting, user }}>
         <AuthenticatedApp />
-      </MeetingContext.Provider>
     ) : (
       <UnauthenticatedApp />
     )}

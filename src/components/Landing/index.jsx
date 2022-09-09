@@ -2,16 +2,14 @@ import { Link } from 'react-router-dom';
 import { chatRooms } from '../../data/chatRooms';
 import { useAuth } from '../../hooks/useAuth';
 import './styles.css';
-import {MeetingContext} from '../../App';
+import { MeetingContext } from "../AuthenticatedApp";
 import { useContext } from 'react';
 import { Profiler } from 'react';
 import Profile from '../Profile';
-
-
+import { joindList } from '../../utils';
 
 function Landing() {
    const {meeting,  user} = useContext(MeetingContext);
-//    
     return (
       <>
       <Link to="/profile">
@@ -20,7 +18,7 @@ function Landing() {
         <ul className="container min-w-full mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {meeting.map((meeting) => (
             <div className="min-w-full " key={meeting.id}>
-              <Link to={`/room/${meeting.id}`}>
+              <Link to={meeting.title}>
                 <div className="	 p-6  bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                   <a href="#">
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -31,10 +29,11 @@ function Landing() {
                     {meeting.joindList.length} people are joind
                   </p>
                   <a
+                  onClick={()=> joindList(meeting.id, user.displayName)}
                     href="#"
                     className="inline-flex items-center py-2 px-3 text-sm font-small text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
-                    Enter
+                    Join
                     <svg
                       aria-hidden="true"
                       className="ml-2 -mr-1 w-4 h-4"
