@@ -28,9 +28,14 @@ export const queueList = async (id, name) => {
   const docRef = doc(db, "chat-rooms", id);
   const payload = { name: name };
   await updateDoc(docRef, { joindList: arrayRemove(payload) });
-
   await updateDoc(docRef, { queueList: arrayUnion(payload) });
 };
+
+export const clearlist = async (id) => {
+  const docRef = doc(db, "chat-rooms", id);
+  await updateDoc(docRef, { queueList: [] });
+};
+
 export const removequeues = async (id, name) => {
   const docRef = doc(db, "chat-rooms", id);
   const payload = { name: name };

@@ -58,9 +58,9 @@ else{
       </div>
 
       <div className="messages-container">
-        {room && <QueueList meeting={room} user={user} />}
+        {room && <QueueList admin={room.admin} meeting={room} user={user} />}
 
-       {room && <WaitingList meeting={room} user={user} />}
+        {room && <WaitingList meeting={room} user={user} />}
       </div>
     </>
   );
