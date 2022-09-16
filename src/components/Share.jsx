@@ -17,7 +17,7 @@ export default function Share({url}) {
 
   return (
     <>
-      <div class="share-dialog">
+      {/* <div class="share-dialog">
         <header>
           <h3 class="dialog-title">Share this pen</h3>
           <button class="close-button">
@@ -155,7 +155,7 @@ export default function Share({url}) {
             <line x1="15" y1="9" x2="9" y2="15"></line>
           </symbol>
         </defs>
-      </svg>
+      </svg> */}
 
       <div className="flex grid grid-cols-1 gap-1">
         <div className="flex-row align-middle border-2 border-black-500  p-2 text-center">
@@ -191,7 +191,10 @@ export default function Share({url}) {
           <div className="col-span-2 p-1">Link: {link}</div>
           <div className="col-span-1   ">
             <img
+              id="copy"
               onClick={() => {
+                document.getElementById("copy").style.filter = " invert(50%) sepia(19%) saturate(1160%) hue-rotate(53deg) brightness(96%) contrast(95%)";
+            
                 navigator.clipboard.writeText(link);
                 navigator.clipboard.readText();
               }}
@@ -200,6 +203,7 @@ export default function Share({url}) {
               width={25}
             />
             <img
+              id="copy"
               onClick={() => {
                 if (navigator.share) {
                   navigator
@@ -214,9 +218,9 @@ export default function Share({url}) {
                 } else {
                   shareDialog.classList.add("is-open");
                 }
-                 closeButton.addEventListener("click", (event) => {
-                   shareDialog.classList.remove("is-open");
-                 });
+                // closeButton.addEventListener("click", (event) => {
+                //   shareDialog.classList.remove("is-open");
+                // });
               }}
               className="float-right border-2 border-gray p-1"
               src="./shareblk.png"
