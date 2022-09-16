@@ -14,6 +14,7 @@ function QueueList({ meeting, user }) {
           queueList_bool={true}
           id={meeting.id}
           name={x.name}
+          admin={meeting.admin}
         />
       ))}
     </>

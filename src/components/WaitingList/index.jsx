@@ -19,6 +19,7 @@ console.log(meeting,user);
             index={Math.abs(meeting.joindList.indexOf(x) + 1)}
             queueList_bool={false}
             id={meeting.id}
+            admin={meeting.admin}
             name={x.name}
           />
         ))}

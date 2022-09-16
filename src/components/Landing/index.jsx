@@ -12,8 +12,9 @@ function Landing() {
    const {meeting,  user} = useContext(MeetingContext);
     return (
       <>
-      <Link to="/profile">
-        <Profile  user={user} /></Link>
+        <Link to="/profile">
+          <Profile user={user} />
+        </Link>
         <h2>Choose Meeting</h2>
         <ul className="container min-w-full mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {meeting.map((meeting) => (
@@ -26,10 +27,11 @@ function Landing() {
                     </h5>
                   </a>
                   <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    {meeting.joindList.length} people are joind
+                    {meeting.joindList.length + meeting.queueList.length} people
+                    are joind
                   </p>
                   <a
-                  onClick={()=> joindList(meeting.id, user.displayName)}
+                    onClick={() => joindList(meeting.id, user.displayName)}
                     href="#"
                     className="inline-flex items-center py-2 px-3 text-sm font-small text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
