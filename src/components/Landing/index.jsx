@@ -21,45 +21,44 @@ function Landing() {
         <ul className="container min-w-full mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {meeting.map((meeting) => (
             <div className="min-w-full " key={meeting.id}>
-              <Link to={meeting.title}>
-                {" "}
-                <></>
-                <div className="	p-6  bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                  <a href="#">
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                      {meeting.title}{" "}
-                      <Popup
-                        modal
-                        nested
-                        trigger={
-                          <img
-                            src="./share.png"
-                            width={30}
-                            className="float-right"
-                          />
-                        }
-                        position="right center"
-                      >
-                        {(close) => (
-                          <div className="modal">
-                            <button className="close" onClick={close}>
-                              &times;
-                            </button>
-                            <div className="header"> Share Meeting </div>
-                            <div className="content">
-                              {" "}
-                              <Share url={meeting.title} />{" "}
-                            </div>
-        
+              {" "}
+              <></>
+              <div className="	p-6  bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    {meeting.title}{" "}
+                    <Popup
+                      modal
+                      nested
+                      trigger={
+                        <img
+                          src="./share.png"
+                          width={30}
+                          className="float-right"
+                        />
+                      }
+                      position="right center"
+                    >
+                      {(close) => (
+                        <div className="modal">
+                          <button className="close" onClick={close}>
+                            &times;
+                          </button>
+                          <div className="header"> Share Meeting </div>
+                          <div className="content">
+                            {" "}
+                            <Share url={meeting.title} />{" "}
                           </div>
-                        )}
-                      </Popup>
-                    </h5>
-                  </a>
-                  <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    {meeting.joindList.length + meeting.queueList.length} people
-                    are joind
-                  </p>
+                        </div>
+                      )}
+                    </Popup>
+                  </h5>
+                </a>
+                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                  {meeting.joindList.length + meeting.queueList.length} people
+                  are joind
+                </p>
+                <Link to={meeting.title}>
                   <a
                     onClick={() => joindList(meeting.id, user.displayName)}
                     href="#"
@@ -80,8 +79,8 @@ function Landing() {
                       ></path>
                     </svg>
                   </a>
-                </div>
-              </Link>
+                </Link>
+              </div>
             </div>
           ))}
         </ul>

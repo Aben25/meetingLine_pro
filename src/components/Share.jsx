@@ -1,5 +1,6 @@
 import React from 'react'
-import QRCode from "react-qr-code";
+import { QRCode } from "react-qrcode-logo";
+
 
 export default function Share({url}) {
     const link = window.location.hostname +"/"+ url;
@@ -8,18 +9,32 @@ export default function Share({url}) {
     <>
       <div className="flex grid grid-cols-1 gap-1">
         <div className="flex-row border-2 border-black-500  p-2 text-center">
-          <div >
-            <QRCode value={link} 
-            size={300}
-            bgColor={"#FFFFFF"}
-            fgColor={"#000000"}
-            level={"L"}
-            includeMargin={true}
-            borderRadius={16}
-            borderStyle={"solid"}
-            borderWidth={16}
-            imageSettings={{ src: "./x.png", height: 50, width: 50, excavate: true }}
-
+          <div>
+            <QRCode
+              value={link}
+       
+              size={300}
+              bgColor={"#FFFFFF"}
+              fgColor={"#000000"}
+              level={"L"}
+              includeMargin={true}
+              borderRadius={16}
+              borderStyle={"solid"}
+              borderWidth={16}
+              logowidth={100}
+            logoheight={100}
+              imageSettings={{
+                src: "https://picsum.photos/id/67/300/300",
+                height: 50,
+                width: 50,
+                excavate: true,
+              }}
+              logoImage={{
+                src: "./logo.png",
+                height: 50,
+                width: 50,
+                excavate: true,
+              }}
             />
           </div>
         </div>
@@ -41,7 +56,7 @@ export default function Share({url}) {
                   navigator
                     .share({
                       title: "Share Meeting",
-                      url: {link},
+                      url: { link },
                     })
                     .then(() => {
                       console.log("Thanks for sharing!");
