@@ -14,7 +14,7 @@ function QueueList({ meeting, user, admin }) {
           <div className="basis-2/1 mr-5">
             {" "}
             <h1 className="text-3xl text-gray-700 font-bold mb-5">
-              Queued List
+              Raised Hands
             </h1>
           </div>
           <div className="basis-2/1 mr-5">
@@ -37,7 +37,8 @@ function QueueList({ meeting, user, admin }) {
           queueList_bool={true}
           id={meeting.id}
           name={x.name}
-          admin={meeting.admin}
+          adminUser={meeting.admin}
+          admin={meeting.admin === user.displayName}
         />
       ))}
     </>
