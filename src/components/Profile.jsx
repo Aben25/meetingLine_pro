@@ -1,19 +1,16 @@
 import React from 'react'
 
 export default function Profile({user}) {
+  console.log(user.photoURL)
    
   return (
-    <div className="grid grid-cols-2 border-2 p-2 radius-4 rounded-lg	">
-      <div className="">
+    <div className="grid place-items-center">
         <img
-          src="https://www.pngitem.com/pimgs/m/99-998739_dale-engen-person-placeholder-hd-png-download.png"
+          src={user.photoURL}
           alt="Avatar"
           className=" shadow rounded-full w-10 h-10  align-middle border-none mr-3"
         />
+        <span className="text-sm text-gray-400 font-semibold"> {user.displayName}</span>
       </div>
-      <div className="inline-block align-bottom">
-        <p className="text-muted align-middle mt-2">{user.displayName}</p>
-      </div>
-    </div>
   );
 }

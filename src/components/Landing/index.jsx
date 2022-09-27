@@ -18,7 +18,7 @@ function Landing() {
           <Profile user={user} />
         </Link>
         <h2>Choose Meeting</h2>
-        <ul className="container min-w-full mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <ul className="container min-w-full mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 m-0">
           {meeting.map((meeting) => (
             <div className="min-w-full " key={meeting.id}>
               {" "}

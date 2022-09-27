@@ -29,7 +29,9 @@ import {
   signInWithPopup,
   getAuth,
   browserSessionPersistence,
-
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  updateProfile
 } from "firebase/auth";
 
 const db = getFirestore(app);
@@ -87,9 +89,57 @@ async function loginWithGoogle() {
     return null;
   }
 }
-   
 
+// register
+// async function register(email, password) {
+//   try {
+//     const auth = getAuth();
+//     const { user } = await createUserWithEmailAndPassword(auth, email, password);
+//     return { uid: user.uid, displayName: user.displayName, photoURL: user.photoURL };
+//   } catch (error) { return null; } finally { }
+// }
+
+async function register(name, email, password) {
+  try {
+    const auth = getAuth();
+    const { user } = await createUserWithEmailAndPassword(auth, email, password);
+    await updateProfile(user, { displayName: name });
+    return { uid: user.uid, displayName: name, photoURL: user.photoURL };
+  } catch (error) { return null; } finally { }
+}
+
+async function loginwemp(email, password) {
+    const auth = getAuth();
+  try {
+    console.log(email, password);
+    const { user } = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    return {
+      uid: user.uid,
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+    };
+  } catch (error) {
+    if (error.code !== "auth/cancelled-popup-request") {
+      console.error(error);
+    }
+
+    return null;
+  }
+}
 
 //get list of user
 
-export { loginWithGoogle, sendMessage, getMessages, Fetchdata, db };
+export {
+  loginWithGoogle,
+  sendMessage,
+  getMessages,
+  Fetchdata,
+  db,
+  register,
+  loginwemp,
+};

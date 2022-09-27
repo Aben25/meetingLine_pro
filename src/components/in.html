@@ -1,0 +1,89 @@
+<div id="sisenseApp">
+  <div id="widget0"></div>
+
+  <div id="widget1"></div>
+  <div id="widget2"></div>
+  <div id="filters"></div>
+</div>
+
+<script
+  type="text/javascript"
+  src="https://artba.sisense.com/js/sisense.js?wat=true"
+></script>
+<!-- replace with your Sisense server address -->
+<script type="text/javascript">
+  const params = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+  // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
+  let value = params.some_key; // "some_value"
+
+  console.log(value);
+  //   const changeDashboardFilter = (dashboard: dashboard, dim: string, newFilterArray: Array<String>) => {
+  // Find matching filter and to make changes to
+  let filterToChange = dashboard.filters.$$filters.find(
+    (item) => item.jaql.dim === `[${dim}]`
+  );
+  let jaql = {
+    datatype: "text",
+    dim: "string",
+    filter: {
+      // Multiple items can be selected
+      multiSelection: true,
+      // New filter items
+      members: value,
+      explicit: true,
+    },
+  };
+  let applyJaql = {
+    jaql: jaql,
+  };
+  const wat =
+    "eyJ0eXAiOiJKV1QiLCJhbGciOiJSU0EtT0FFUC0yNTYiLCJ6aXAiOiJERUYiLCJlbmMiOiJBMTI4R0NNIiwia2lkIjoiNjMyZTA1YjkwNGQ3ODMwMDM4MTcxMWQyIn0.ULNcOht1dyyNBYVdC9dRLMkcSRbJfJ973L_zrmrCnOe5I50F0DhGb9vatvztYrZWrMlsNadcQtamNI2Z9u838D7RL4cjUUfHhULy63CLYx0E38RX-J8RrUCu6xhmQU1Adaasr1oxg0RWARVOpSIncnmOUuPhRXx1VGeVgZLq9_XLnb85iA0ylyBVEfHuQYHALdCAMx-uoh2c08LDuQz1Qjd9JR6-x6jfZMSff7NLfOkQfBUHE0LONvfWK-iTX05twRWwrmPJ-_xk8qTAFAjnd5fMDPaMY1Ix-zekRBrolFRaalHTT7lEFimeON1MqLb5xtuPgaKDDmYSkPlAjWPvUg.pXB5F6oPs6NgHR2_.4vgEz_1gRjjO7DlfrS2BvXZq6ysuyb6hlpY4lgfotXtbhTrbcPJYEZBd9csd6VCFa4QX44JiJA0uT_Nav8QXwzvT52n2f21GoBe3K4rRYEnj6Zu9xBmR23QknrS0Gop7jaYYRiIcRxf0gzHgzG6MsaUPeqQ5Sq0xCzwiXCdrc5Ooyk6amHTy0rT9c_vyihy2zQXhVJjl-1oOFHdMMDLkZS4D4rTjH1CDwGp9KnSMJsR4XOAV3xO2JXOlA8OKga7D9nf443LVfrQ2gGqjt-FKhVDeUwjVMhkwPykLij2k2vVFL3esgBYPoGRCxuRR-uT02aVwUK6-8IoXbb1-apOsPfPdjqaTCuDWNcN1w-ea-XCOk-XY_qbe1Q0g4s87JtJvqXo4ZWujmBlamSCBS3x_MIgXq5M.I4TtOwWdn3pvlObiL83RrA";
+
+  let filterOptions = {
+    // Save to dashboard
+    save: false,
+    // Refresh on change
+    refresh: true,
+    // If filter already used, make changes to that filter instead of creating new ones
+    unionIfSameDimensionAndSameType: true,
+  };
+
+  Sisense.connect("https://artba.sisense.com/", false, wat)
+    .then((app) => {
+      app.dashboards
+        .load("61b1002725769833c00285bf") //replace with your dashboard id
+        .then((dash) => {
+          var filterToChange = dash.filters.$$filters.find(
+            (item) => item.jaql.dim == "[Commerce.Age Range]"
+          );
+          if (filterToChange && filterToChange.$$model.jaql.filter) {
+            var members = filterToChange.$$model.jaql.filter.members;
+
+            // Check if we already have the member selected
+            if (members && !members.includes("Florida")) {
+              // Push a new member to the filter
+              members.push("Florida");
+
+              // Save the dashboard
+              dash.$$model.$dashboard.updateDashboard(dash.$$model, "filters");
+            }
+          }
+
+          dash.widgets.get("61b11785858e6e26dc11e32f").container =
+            document.getElementById("widget0"); //replace with one of your widgets' id.
+          dash.widgets.get("61b10b1825769833c0028602").container =
+            document.getElementById("widget1"); //replace with one of your widgets' id.
+          dash.renderFilters(document.getElementById("filters"));
+
+          dash.refresh();
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+    })
+    .catch((e) => {
+      console.error(e);
+    });
+</script>
