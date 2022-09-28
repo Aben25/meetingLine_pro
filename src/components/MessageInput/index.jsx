@@ -29,7 +29,8 @@ function MessageInput({ roomId }) {
                 minLength={1}
             />
             <button type="submit" disabled={value < 1} className="send-message">
-                Send
+
+                <img src="./send.png" className="send-message-icon" width={30}/>
             </button>
         </form>
     );

@@ -69,3 +69,25 @@ button {
 .profimg {
   padding: auto;
 }
+
+.react-tabs__tab-list {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+.react-tabs__tab {
+  font-size: 1rem;
+  color: var(--color-gray);
+  padding: 8px 1px;
+  border-radius: var(--border-radius);
+  transition: all 0.1s ease-in-out;
+}
+.react-tabs__tab--selected {
+  color: var(--color-white);
+  background-color: var(--color-blue);
+}
+.react-tabs__tab--selected:hover {
+  background-color: var(--color-blue);
+}

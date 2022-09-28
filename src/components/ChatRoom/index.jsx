@@ -62,13 +62,11 @@ else{
       </div>
       <Tabs >
         <TabList>
-          <Tab>List</Tab>
+          <Tab>Queue</Tab>
           <Tab>Chat</Tab>
         </TabList>
 
-        <TabPanel>
-          <Chat />
-                  </TabPanel>
+      
         <TabPanel>
         
         
@@ -78,6 +76,9 @@ else{
 
             {room && <WaitingList meeting={room} user={user} />}
           </div>
+        </TabPanel>
+        <TabPanel>
+          <Chat />
         </TabPanel>
       </Tabs>
       
