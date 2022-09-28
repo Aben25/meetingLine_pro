@@ -8,11 +8,15 @@ import Person from '../Person';
 
 function WaitingList({meeting, user} ) {
 
+  const list =meeting.joindList;
+  //remove duplicates from list
+  const uniqueList = [...new Set(list)]
+  console.log(uniqueList)
     return (
       <>
         <h1 className="text-3xl text-gray-700 font-bold mb-5">Audience</h1>
 
-        {meeting.joindList.sort(function (a, b) {
+        {uniqueList.sort(function (a, b) {
           var textA = a.name.toUpperCase();
           var textB = b.name.toUpperCase();
           return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
