@@ -47,7 +47,7 @@ const STab = styled(Tab)`
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(0, 0, 255, .5)
+        box-shadow: 0 0 0 2px rgba(186, 186, 197, 0.5)
   }
 `;
 STab.tabsRole = 'Tab';
