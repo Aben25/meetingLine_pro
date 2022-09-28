@@ -17,7 +17,7 @@ function Chat() {
     return (
         <>
         
-            <div className="messages-container">
+            <div className="p-1">
                 {room && <MessageList roomId={room.id} />}
                 {room && <MessageInput roomId={room.id} />}
             </div>

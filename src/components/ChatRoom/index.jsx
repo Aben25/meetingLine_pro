@@ -15,6 +15,57 @@ import Profile from "../Profile";
 import { Chat } from "../Chat";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import styled from 'styled-components';
+
+const STabs = styled(Tabs)`
+  font-size: 12px;
+  width: 50%;
+`;
+
+const STabList = styled(TabList)`
+  list-style-type: none;
+  padding: 4px;
+  display: flex;
+  margin: 0;
+`;
+STabList.tabsRole = 'TabList';
+
+const STab = styled(Tab)`
+  margin-right: 4px;
+  border: 1px  solid gray;
+  border-radius: 5px 5px 0 0;
+   border-bottom-width: 0;
+  padding: 4px;
+  user-select: none;
+  cursor: arrow;
+
+  &.is-selected {
+    // color: white;
+    // background: black;
+    border-bottom: 1px solid white;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 0, 255, .5)
+  }
+`;
+STab.tabsRole = 'Tab';
+
+const STabPanel = styled(TabPanel)`
+  display: none;
+  min-height: 40vh;
+  border: 1px solid gray;
+  border-radius: 4px;
+  padding: 4px;
+  margin-top: -5px;
+
+  &.is-selected {
+    display: block;
+  }
+`;
+STabPanel.tabsRole = 'TabPanel';
+
 
 function ChatRoom() {
    const { meeting, user } = useContext(MeetingContext);
@@ -60,27 +111,23 @@ else{
           {found ? "Hand Down" : "Rais Hand"}
         </button>
       </div>
-      <Tabs >
-        <TabList>
-          <Tab>Queue</Tab>
-          <Tab>Chat</Tab>
-        </TabList>
-
-      
-        <TabPanel>
-        
-        
-
-          <div className="messages-container">
+      <STabs
+        selectedTabClassName='is-selected'
+        selectedTabPanelClassName='is-selected'
+      >
+        <STabList>
+          <STab>Queue</STab>
+          <STab>Chat</STab>
+        </STabList>
+        <STabPanel>
+          <div className="p-2">
             {room && <QueueList admin={room.admin} meeting={room} user={user} />}
 
             {room && <WaitingList meeting={room} user={user} />}
-          </div>
-        </TabPanel>
-        <TabPanel>
-          <Chat />
-        </TabPanel>
-      </Tabs>
+          </div></STabPanel>
+        <STabPanel>          <Chat />
+</STabPanel>
+      </STabs>
       
      
     </>
