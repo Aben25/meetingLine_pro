@@ -25,9 +25,7 @@ const DbProvider = (props) => {
          setmeeting(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
        );   
     };
-console.log('====================================');
-console.log(meeting);
-console.log('====================================');
+
   return <DbContext.Provider value={meeting} {...props} />;
 };
 

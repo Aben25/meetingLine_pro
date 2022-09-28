@@ -6,18 +6,20 @@ import { db } from "../../services/firebase";
 import { onSnapshot, collection } from "firebase/firestore";
 import { useContext, useEffect, useState, createContext } from "react";
 import {
-  joindList,
   removeJoindList,
   queueList,
   removequeues,
 } from "../../utils";
 import { MeetingContext } from "../AuthenticatedApp";
-import { useAuth } from "../../hooks/useAuth";
+import Profile from "../Profile";
+import { Chat } from "../Chat";
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 function ChatRoom() {
    const { meeting, user } = useContext(MeetingContext);
   const params = useParams();
-  const room = meeting.find((x) => x.title === params.title);
+  const room = meeting.find((x) => x.title.toLowerCase().replace(/\s+/g, '') === params.title.toLowerCase().replace(/\s+/g, ''));
   let btn = "Rais Hand";
 
 const found = room && room.queueList.some((x) => x.name === user.displayName);
@@ -36,12 +38,14 @@ else{
     // TODO: 404
   }
 
-
+  
   return (
     <>
-      <h2>{room && room.title}</h2>
+      <h2> <Link to="/profile">
+        <Profile user={user} />
+      </Link></h2>
       <div onClick={() => removeJoindList(room.id, user.displayName)}>
-        <Link to="/">⬅️ Back to all Meeting</Link>
+        <Link to="/">⬅️ Back ||</Link> {room && room.title}
       </div>
       <div className="flex flex-row">
         <div className=""></div>
@@ -56,13 +60,30 @@ else{
           {found ? "Hand Down" : "Rais Hand"}
         </button>
       </div>
+      <Tabs >
+        <TabList>
+          <Tab>List</Tab>
+          <Tab>Chat</Tab>
+        </TabList>
 
-      <div className="messages-container">
-        {room && <QueueList admin={room.admin} meeting={room} user={user} />}
+        <TabPanel>
+          <Chat />
+                  </TabPanel>
+        <TabPanel>
+        
+        
 
-        {room && <WaitingList meeting={room} user={user} />}
-      </div>
+          <div className="messages-container">
+            {room && <QueueList admin={room.admin} meeting={room} user={user} />}
+
+            {room && <WaitingList meeting={room} user={user} />}
+          </div>
+        </TabPanel>
+      </Tabs>
+      
+     
     </>
+    
   );
 }
 

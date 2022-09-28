@@ -4,7 +4,7 @@ import { joindList, queueList, removeperson } from "../../utils";
 import Person from "../Person";
 
 
-import {clearlist} from '../../utils';
+import { clearlist } from '../../utils';
 
 function QueueList({ meeting, user, admin }) {
   return (
@@ -22,7 +22,7 @@ function QueueList({ meeting, user, admin }) {
             {admin === user.displayName ? (
               <p
                 onClick={() => clearlist(meeting.id)}
-                class="text-sky-400/100 text-xs mt-2 border pr-1 pl-1 border-collapse border-r-1 rounded border-gray-600"
+                className="text-sky-400/100 text-xs mt-2 border pr-1 pl-1 border-collapse border-r-1 rounded border-gray-600"
               >
                 Clear
               </p>

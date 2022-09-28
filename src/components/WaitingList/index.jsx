@@ -8,7 +8,6 @@ import Person from '../Person';
 
 function WaitingList({meeting, user} ) {
 
-console.log(meeting,user);
     return (
       <>
         <h1 className="text-3xl text-gray-700 font-bold mb-5">Audience</h1>
@@ -21,6 +20,7 @@ console.log(meeting,user);
             id={meeting.id}
             admin={meeting.admin}
             name={x.name}
+            photo={x.photoURL}
           />
         ))}
       </>

@@ -111,7 +111,6 @@ async function register(name, email, password) {
 async function loginwemp(email, password) {
     const auth = getAuth();
   try {
-    console.log(email, password);
     const { user } = await signInWithEmailAndPassword(
       auth,
       email,

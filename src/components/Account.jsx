@@ -7,18 +7,17 @@ import { removeMeeting } from "../utils";
 import { MeetingContext } from "./AuthenticatedApp";
 
 export default function Account() {
-  const {logout} =useAuth()
- const { meeting, user } = useContext(MeetingContext);
-const domain = window.location.hostname
+  const { logout } = useAuth()
+  const { meeting, user } = useContext(MeetingContext);
+  const domain = window.location.hostname
   let navigate = useNavigate();
 
-  
+
   function handleClick(title) {
-    navigate("../"+title);
+    navigate("../" + title);
   }
 
   const mymeeting = meeting.filter((meet) => meet.admin === user.displayName);
-  console.log(mymeeting)
 
   return (
     <>
@@ -29,7 +28,7 @@ const domain = window.location.hostname
       <div className="flex flex-2">
         <div className="flex flex-1">
           <button
-            onClick={() => {logout(); navigate("/")}}
+            onClick={() => { logout(); navigate("/") }}
             type="button"
             className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-0 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
           >
@@ -42,15 +41,16 @@ const domain = window.location.hostname
               type="button"
               className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
             >
-              Creat Meeting
+              Create Meeting
             </button>
           </div>
         </Link>
       </div>
-      <div className="">
+      <ul className="flex justify-center  container min-w-full mx-auto  grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 m-0">
+
         {mymeeting.map((meet) => (
-          <div key={meet.id} className=" container">
-            <div className="p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+            <div className="min-w-full  " key={meeting.id}>
+            <div className=" p-6  bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
               <a href={meeting.title}>
                 <p className="mb-2 text-3 tracking-tight text-gray-900 dark:text-white">
                   {meet.title}
@@ -70,9 +70,9 @@ const domain = window.location.hostname
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   ></path>
                 </svg>
               </a>
@@ -86,7 +86,7 @@ const domain = window.location.hostname
             </div>
           </div>
         ))}
-      </div>
+      </ul>
     </>
   );
 }

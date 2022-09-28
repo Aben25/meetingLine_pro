@@ -4,71 +4,70 @@ import "./share.css";
 
 
 
-export default function Share({url}) {
-    const link = window.location.hostname +"/"+ url;
-    console.log("meeting.titl", link);
-    const shareButton = document.querySelector(".share-button");
-    const shareDialog = document.querySelector(".share-dialog");
-    const closeButton = document.querySelector(".close-button");
+export default function Share({ url }) {
+  const link = window.location.hostname + "/" + url;
+  const shareButton = document.querySelector(".share-button");
+  const shareDialog = document.querySelector(".share-dialog");
+  const closeButton = document.querySelector(".close-button");
 
 
 
-   
+
 
   return (
     <>
-      {/* <div class="share-dialog">
+      {/* <div className="share-dialog">
         <header>
-          <h3 class="dialog-title">Share this pen</h3>
-          <button class="close-button">
+          <h3 className="dialog-title">Share this pen</h3>
+          <button className="close-button">
             <svg>
               <use href="#close"></use>
             </svg>
           </button>
         </header>
-        <div class="targets">
-          <a class="button">
+        <div className="targets">
+          <a className="button">
             <svg>
               <use href="#facebook"></use>
             </svg>
             <span>Facebook</span>
           </a>
 
-          <a class="button">
+          <a className="button">
             <svg>
               <use href="#twitter"></use>
             </svg>
             <span>Twitter</span>
           </a>
 
-          <a class="button">
+          <a className="button">
             <svg>
               <use href="#linkedin"></use>
             </svg>
             <span>LinkedIn</span>
           </a>
 
-          <a class="button">
+          <a className="button">
             <svg>
               <use href="#email"></use>
             </svg>
             <span>Email</span>
           </a>
         </div>
-        <div class="link">
-          <div class="pen-url">https://codepen.io/ayoisaiah/pen/YbNazJ</div>
-          <button class="copy-link">Copy Link</button>
+        <div className="link">
+          <div className="pen-url">https://codepen.io/ayoisaiah/pen/YbNazJ</div>
+          <button className="copy-link">Copy Link</button>
         </div>
       </div>
 
-      <button class="share-button" type="button" title="Share this article">
+      <button className="share-button" type="button" title="Share this article">
         <svg>
           <use href="#share-icon"></use>
         </svg>
         <span>Share</span>
       </button>
 
-      <svg class="hidden">
+      <svg className="hidden">
         <defs>
           <symbol
             id="share-icon"
@@ -78,7 +77,7 @@ export default function Share({url}) {
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="feather feather-share"
+            className="feather feather-share"
           >
             <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
             <polyline points="16 6 12 2 8 6"></polyline>
@@ -93,7 +92,7 @@ export default function Share({url}) {
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="feather feather-facebook"
+            className="feather feather-facebook"
           >
             <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
           </symbol>
@@ -106,7 +105,7 @@ export default function Share({url}) {
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="feather feather-twitter"
+            className="feather feather-twitter"
           >
             <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
           </symbol>
@@ -119,7 +118,7 @@ export default function Share({url}) {
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="feather feather-mail"
+            className="feather feather-mail"
           >
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
             <polyline points="22,6 12,13 2,6"></polyline>
@@ -133,7 +132,7 @@ export default function Share({url}) {
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="feather feather-linkedin"
+            className="feather feather-linkedin"
           >
             <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
             <rect x="2" y="9" width="4" height="12"></rect>
@@ -148,7 +147,7 @@ export default function Share({url}) {
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="feather feather-x-square"
+            className="feather feather-x-square"
           >
             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
             <line x1="9" y1="9" x2="15" y2="15"></line>
@@ -194,7 +193,7 @@ export default function Share({url}) {
               id="copy"
               onClick={() => {
                 document.getElementById("copy").style.filter = " invert(50%) sepia(19%) saturate(1160%) hue-rotate(53deg) brightness(96%) contrast(95%)";
-            
+
                 navigator.clipboard.writeText(link);
                 navigator.clipboard.readText();
               }}
@@ -212,7 +211,6 @@ export default function Share({url}) {
                       url: { link },
                     })
                     .then(() => {
-                      console.log("Thanks for sharing!");
                     })
                     .catch(console.error);
                 } else {
