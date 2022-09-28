@@ -18,8 +18,8 @@ import 'react-tabs/style/react-tabs.css';
 import styled from 'styled-components';
 
 const STabs = styled(Tabs)`
-  font-size: 12px;
-  width: 50%;
+  font-size: 14px;
+  width: 100%;
 `;
 
 const STabList = styled(TabList)`
