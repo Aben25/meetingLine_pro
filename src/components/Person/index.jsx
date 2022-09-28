@@ -20,7 +20,7 @@ export default function Person({
   return (
     <div className="border-solid border-2 border-gray-800 radius-2 p-2 rounded-md mb-3 max-w-sm	 ring-offset-2 ring-3">
       <div className="flex flex-row borderd text-center">
-        <div className="basis-1/1.5 pr-2 ">{index}</div>
+        <div className="basis-1/1.5 pr-2 ">{queueList_bool&&index}</div>
         <div className="fill-white basis-1/1.5 pr-2 "></div>
 
         <div className="basis-2/1 mr-5"><p className={queueList_bool ? "text-gray-200" :"text-gray-500"} >{name}</p></div>
