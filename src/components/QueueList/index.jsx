@@ -13,11 +13,11 @@ function QueueList({ meeting, user, admin }) {
         <div className="flex flex-row borderd text-center">
           <div className="basis-2/1 mr-5">
             {" "}
-            <h1 className="text-3xl text-gray-700 font-bold mb-5">
+            <h1 className="text-3xl text-gray-400 font-bold mb-5">
               Raised Hands
             </h1>
           </div>
-          <div className="basis-2/1 mr-5">
+          <div className="basis-2/1 mr-5 ">
             {" "}
             {admin === user.displayName ? (
               <p

@@ -23,7 +23,7 @@ export default function Person({
         <div className="basis-1/1.5 pr-2 ">{index}</div>
         <div className="fill-white basis-1/1.5 pr-2 "></div>
 
-        <div className="basis-2/1 mr-5">{name}</div>
+        <div className="basis-2/1 mr-5"><p className={queueList_bool ? "text-gray-200" :"text-gray-500"} >{name}</p></div>
         <div className="basis-2/1 mr-5 muted">
           {adminUser === name ? (
             <p className="text-sky-400/25 text-xs mt-1 border pr-1 pl-1 border-collapse border-r-1 rounded border-gray-600">
